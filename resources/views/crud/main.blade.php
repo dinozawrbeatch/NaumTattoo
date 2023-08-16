@@ -1,4 +1,4 @@
 @extends('layouts.main')
 @section('content')
-    <h1>{{ empty($masters) ? $masters : 'huy' }}</h1>
+    <h1>AdminPanel</h1>
 @endsection
