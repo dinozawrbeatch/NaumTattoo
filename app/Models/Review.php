@@ -26,4 +26,23 @@ class Review extends Model
     use HasFactory;
 
     protected $table = 'reviews';
+    protected $fillable = [
+        'client_name',
+        'grade',
+        'text',
+    ];
+
+    const MODEL_NAME = 'Отзывы';
+    const MODEL_LINK = 'reviews';
+    const FIELDS = [
+        'id' => '№',
+        'client_name' => 'Имя клиента',
+        'grade' => 'Оценка',
+        'text' => 'Текст отзыва',
+    ];
+
+    public static function getGradeMarks(): array
+    {
+        return range(1,5);
+    }
 }

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\TattooController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,24 +16,16 @@ use App\Http\Controllers\MasterController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//
+//Route::get('/', function () {
+//    return view('front.index');
+//});
 
-Route::get('/', function () {
-    return file_get_contents(__DIR__ . '../../public/index.html');
-});
-
-Route::group(['middleware' => 'admin'], function () {
-    //Masters
-    Route::resource('masters', MasterController::class)->only([
-        'index'
-    ]);
-
-//    Route::get('/masters', [MasterController::class, 'index']);
-//    Route::get('/masters/create',  [MasterController::class, 'create']);
-//    Route::post('/masters',  [MasterController::class, 'store']);
-//    Route::get('/masters/{master}', [MasterController::class, 'show']);
-//    Route::get('/masters/{master}/edit', [MasterController::class, 'edit']);
-//    Route::put('/masters/{master}', [MasterController::class, 'update']);
-//    Route::delete('/masters/{master}', [MasterController::class, 'destroy']);
+Route::middleware('admin')->name('admin.')->group(function () {
+    Route::resource('masters', MasterController::class);
+    Route::resource('tattoos', TattooController::class);
+    Route::resource('reviews', ReviewController::class);
+    Route::resource('products', ProductController::class);
 });
 
 

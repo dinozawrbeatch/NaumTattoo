@@ -7,51 +7,67 @@ use Illuminate\Http\Request;
 abstract class CRUDController extends Controller
 {
     protected string $modelName;
+    protected string $modelLink;
 
-    public function __construct($model)
+    /**
+     * @param string $model
+     */
+    public function __construct(string $model)
     {
-       $this->modelName = $model;
+        $this->modelName = $model;
+        $this->modelLink = $model::MODEL_LINK;
     }
 
     public function index()
     {
-        $content = $this->modelName::all();
+        $rows = $this->modelName::simplePaginate(10);
 
-        return view('index', ['content' => $content]);
+        return view('admin.index', [
+            'rows' => $rows,
+            'modelName' => $this->modelName,
+            'modelLink' => $this->modelLink
+        ]);
     }
 
     public function create()
     {
-        return view('create', $this->modelName);
+        return view('admin.create', [
+            'modelName' => $this->modelName
+        ]);
     }
 
     public function store(Request $request)
     {
-        $this->modelName::create($request->all());
+        $requestData = $request->except('_token');
+        $this->modelName::create($requestData);
 
-        return redirect('index');
+        return redirect()->route("admin.$this->modelLink.index");
     }
 
     public function show(int $id)
     {
-        $model = $this->modelName::find($id)->first();
+        $row = $this->modelName::find($id);
 
-        return view('show', $model);
+        return view('admin.show', [
+            'row' => $row,
+            'modelName' => $this->modelName,
+            'modelLink' => $this->modelLink
+        ]);
     }
 
     public function edit(string $id)
     {
-        $model = $this->modelName::find($id)->first();
+        $model = $this->modelName::find($id);
 
-        return view('edit', $model);
+        return view("admin.$this->modelLink.edit", ['model' => $model]);
     }
 
     public function update(Request $request, string $id)
     {
-        $model = $this->modelName::find($id)->first();
+        $model = $this->modelName::find($id);
         $model?->update($request->all());
 
-        return redirect('show', $id);
+        return redirect()->route("admin.$this->modelLink.show", $id);
     }
 
     public function destroy(string $id)
@@ -59,6 +75,6 @@ abstract class CRUDController extends Controller
         $model = $this->modelName::find($id)->first();
         $model?->delete($id);
 
-        return redirect('index');
+        return redirect()->route("admin.$this->modelLink.index");
     }
 }

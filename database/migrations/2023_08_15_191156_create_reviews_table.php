@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('client_name');
             $table->enum('grade', range(1,5));
             $table->text('text');
+            $table->timestamps();
         });
     }
 

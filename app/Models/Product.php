@@ -24,4 +24,16 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'products';
+    protected $fillable = [
+        'image',
+        'link',
+    ];
+
+    const MODEL_NAME = 'Товары';
+    const MODEL_LINK = 'products';
+    const FIELDS = [
+        'id' => '№',
+        'link' => 'Ссылка',
+        'image' => 'Фото',
+    ];
 }

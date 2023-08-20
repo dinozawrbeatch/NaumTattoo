@@ -6,11 +6,14 @@ use App\Http\Requests\AdminRequest;
 
 class AdminController extends Controller
 {
-    public function authorize(AdminRequest $adminRequest)
+    public function authorize(AdminRequest $request)
     {
-        $adminRequest->validate($adminRequest->all());
-        if ($adminRequest->login === 'admin' && $adminRequest->password === '123') {
-            return view ();
+        $validatedData = $request->validated();
+
+        if ($validatedData['login'] !== 'admin' || $validatedData['password'] !== '123') {
+            return redirect()->route('login')->with('error', 'Неверные учетные данные');
         }
+
+        return route('login');
     }
 }

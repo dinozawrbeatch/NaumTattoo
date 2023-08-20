@@ -24,4 +24,20 @@ class Tattoo extends Model
     use HasFactory;
 
     protected $table = 'tattoos';
+    protected $fillable = [
+        'image',
+        'format'
+    ];
+
+    const MODEL_NAME = 'Тату';
+    const MODEL_LINK = 'tattoos';
+    const FIELDS = [
+        'id' => '№',
+        'image' => 'Фото',
+        'format' => 'Формат изображения',
+    ];
+    const IMAGE_FORMATS = [
+        'square' => 'Квадрат',
+        'rectangle' => 'Прямоугольник'
+    ];
 }

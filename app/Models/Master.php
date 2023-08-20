@@ -26,4 +26,18 @@ class Master extends Model
     use HasFactory;
 
     protected $table = 'masters';
+    protected $fillable = [
+        'name',
+        'description',
+        'image',
+    ];
+
+    const MODEL_NAME = 'Мастера';
+    const MODEL_LINK = 'masters';
+    const FIELDS = [
+        'id' => '№',
+        'name' => 'Имя',
+        'description' => 'Описание',
+        'image' => 'Фото',
+    ];
 }

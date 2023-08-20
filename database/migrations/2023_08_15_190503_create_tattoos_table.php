@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->enum('format', ['square', 'rectangle']);
+            $table->timestamps();
         });
     }
 
