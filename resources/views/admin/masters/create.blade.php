@@ -17,4 +17,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
+    <script src="{{ asset('/js/imageUpload.js') }}"></script>
 @endsection

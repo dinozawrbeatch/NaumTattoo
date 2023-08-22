@@ -24,6 +24,7 @@
             <label for="text">Текст отзыва</label>
             <textarea class="form-control" id="text" name="text">{{ $model->text }}</textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
+    <script src="{{ asset('/js/imageUpload.js') }}"></script>
 @endsection

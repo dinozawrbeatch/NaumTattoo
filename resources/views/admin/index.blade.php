@@ -20,6 +20,11 @@
                 <tr>
                     @foreach($modelName::FIELDS as $key => $value)
                         <td>
+                            @if ($key === 'image')
+                                <img class="img-thumbnail" src="{{ asset('storage/' . $row->{$key}) }}" alt=""
+                                     width="100" height="100">
+                                @continue
+                            @endif
                             {{ $row->{$key} }}
                         </td>
                     @endforeach

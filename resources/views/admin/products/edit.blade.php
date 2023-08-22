@@ -9,9 +9,15 @@
             <input type="text" class="form-control" id="link" value="{{ $model->link }}" name="link">
         </div>
         <div class="form-group mb-3">
-            <label for="image">Картинка</label>
-            <input type="file" class="form-control" id="image" name="image" value="{{ $model->image }}">
+            <label for="image">Изображение</label>
+            <input type="file" class="form-control-file" id="image" name="image"
+                   onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
+        </div>
+        <div class="form-group mb-3">
+            <img id="preview" width="100" height="100" class="img-fluid" src="{{ asset('storage/' . $model->image) }}"
+                 alt="">
         </div>
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
+    <script src="{{ asset('/js/imageUpload.js') }}"></script>
 @endsection

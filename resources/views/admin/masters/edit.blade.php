@@ -4,18 +4,24 @@
     <form action="{{ route("admin.masters.update", $model->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="name">Имя</label>
             <input type="text" class="form-control" id="name" name="name" required value="{{ $model->name }}">
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="description">Описание</label>
             <textarea class="form-control" id="description" name="description" rows="3" required>{{ $model->description }}</textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="image">Изображение</label>
-            <input type="file" class="form-control-file" id="image" name="image" required>
+            <input type="file" class="form-control-file" id="image" name="image"
+                   onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
         </div>
-        <button type="submit" class="btn btn-primary my-3">Сохранить</button>
+        <div class="form-group mb-3">
+            <img id="preview" width="100" height="100" class="img-fluid" src="{{ asset('storage/' . $model->image) }}"
+                 alt="">
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
+    <script src="{{ asset('/js/imageUpload.js') }}"></script>
 @endsection
