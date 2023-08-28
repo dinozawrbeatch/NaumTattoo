@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tattoos', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->enum('format', ['square', 'rectangle']);
+            $table->enum('format', ['square', 'tall', 'wide']);
             $table->timestamps();
         });
     }

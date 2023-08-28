@@ -9,6 +9,10 @@
 </head>
 <body>
 <header>
+    <form action="{{ route("logout") }}" method="post">
+        @csrf
+        <button type="submit" class="btn btn-primary">Выйти</button>
+    </form>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">NaumTattoo</a>
@@ -19,16 +23,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/masters">Мастера</a>
+                        <a class="nav-link" href="/admin/masters">Мастера</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/tattoos">Тату</a>
+                        <a class="nav-link" href="/admin/tattoos">Тату</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/products">Товары</a>
+                        <a class="nav-link" href="/admin/products">Товары</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/reviews">Отзывы</a>
+                        <a class="nav-link" href="/admin/reviews">Отзывы</a>
                     </li>
                 </ul>
             </div>

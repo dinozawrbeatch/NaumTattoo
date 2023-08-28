@@ -38,6 +38,7 @@ class Tattoo extends Model
     ];
     const IMAGE_FORMATS = [
         'square' => 'Квадрат',
-        'rectangle' => 'Прямоугольник'
+        'tall' => 'Прямоугольник(вертикальный)',
+        'wide' => 'Прямоугольник(горизонтальный)',
     ];
 }

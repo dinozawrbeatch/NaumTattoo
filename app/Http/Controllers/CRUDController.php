@@ -39,6 +39,10 @@ abstract class CRUDController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->except('_token');
+        if ($request->has('image')) {
+            $imagePath = $requestData['image']->store('uploads', 'public');
+            $requestData['image'] = $imagePath;
+        }
         $this->modelName::create($requestData);
 
         return redirect()->route("admin.$this->modelLink.index");
@@ -65,7 +69,12 @@ abstract class CRUDController extends Controller
     public function update(Request $request, string $id)
     {
         $model = $this->modelName::find($id);
-        $model?->update($request->all());
+        $requestData = $request->except('_token');
+        if ($request->has('image')) {
+            $imagePath = $requestData['image']->store('uploads', 'public');
+            $requestData['image'] = $imagePath;
+        }
+        $model?->update($requestData);
 
         return redirect()->route("admin.$this->modelLink.show", $id);
     }

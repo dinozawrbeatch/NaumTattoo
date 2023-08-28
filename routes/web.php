@@ -1,27 +1,18 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TattooController;
+use App\Http\Controllers\WelcomeController;
+use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-//
-//Route::get('/', function () {
-//    return view('front.index');
-//});
+Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index']);
 
-Route::middleware('admin')->name('admin.')->group(function () {
+Route::middleware(['admin', 'auth'])->prefix('admin/')->name('admin.')->group(function () {
     Route::resource('masters', MasterController::class);
     Route::resource('tattoos', TattooController::class);
     Route::resource('reviews', ReviewController::class);
@@ -29,3 +20,5 @@ Route::middleware('admin')->name('admin.')->group(function () {
 });
 
 
+Auth::routes();
+Route::get('/home', [HomeController::class, 'index'])->name('home');

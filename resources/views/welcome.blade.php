@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Тату салоны Ижевска, сделать тату в Ижевске, лучшие тату мастера Ижевска">
     <meta name="keywords" content="тату, Ижевск, тату салон, тату мастер, naumtattoo, сделать тату">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="./libs/fancybox/fancybox.min.css"/>
-    <link rel="stylesheet" href="./libs/splide/splide.min.css">
-    <link rel="stylesheet" href="./libs/wow/wow.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ asset('./css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('./libs/fancybox/fancybox.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('./libs/splide/splide.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('./libs/wow/wow.css') }}">
+    <link rel="stylesheet" href="{{ asset('./css/styles.css') }}">
     <title>NaumTattoo | Татуировки Ижевск</title>
 </head>
 
@@ -79,7 +79,7 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     @foreach($masters as $master)
-                        <li class="splide__slide master wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
+                        <li data-description="{{ $master->description }}" class="splide__slide master wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
                             <img src="{{ asset('storage/' . $master->image) }}" alt="master"/>
                             <h2>{{ $master->name }}</h2>
                         </li>
@@ -104,7 +104,7 @@
         </div>
         <div class="gallery_content">
             @foreach($tattoos as $tattoo)
-                <a data-fancybox href="./images/tattoo_gallery_1.webp" aria-multiline="example tattoo"
+                <a data-fancybox href="{{ asset('storage/' . $tattoo->image) }}" aria-multiline="example tattoo"
                    class="wow fadeIn {{ $tattoo->format === 'square' ? '' : $tattoo->format }}" data-wow-duration="2s"
                    data-wow-delay="0.2s">
                     <img src="{{ asset('storage/' . $tattoo->image) }}" loading="lazy" alt="example tattoo"/>
@@ -127,12 +127,18 @@
           </span>
             </div>
             <div class="selects">
-                <div id="size" class="custom_select wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s"></div>
-                <div id="color" class="custom_select wow fadeInRight" data-wow-duration="2s"
-                     data-wow-delay="0.4s"></div>
-                <div id="location" class="custom_select wow fadeInRight" data-wow-duration="2s"
-                     data-wow-delay="0.6s"></div>
-                <div id="type" class="custom_select wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.6s"></div>
+                <div class="tabs wow fadeInRight data-wow-duration="2s"">
+                <button class="active">Тату</button>
+                <button>Макияж</button>
+            </div>
+            <div class="makeupSelects hidden">
+                <div id="procedure" class="custom_select"></div>
+                <div id="type" class="custom_select"></div>
+            </div>
+            <div class="tattooSelects">
+                <div id="size" class="custom_select wow fadeInRight" data-wow-duration="2s"></div>
+                <div id="color" class="custom_select wow fadeInRight" data-wow-duration="2s"></div>
+            </div>
                 <button id="show_tattoo_price" class="show_price wow fadeInRight" data-wow-duration="2s"
                         data-wow-delay="0.6s">Узнать цену
                 </button>
@@ -459,13 +465,13 @@
     </div>
 </dialog>
 
-<script src="js/selects.js"></script>
-<script src="./libs/splide/splide.min.js"></script>
-<script src="./libs/wow/wow.min.js"></script>
+<script src="{{ asset('js/selects.js') }}"></script>
+<script src="{{ asset('./libs/splide/splide.min.js') }}"></script>
+<script src="{{ asset('./libs/wow/wow.min.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="./libs/fancybox/fancybox.min.js"></script>
+<script src="{{ asset('./libs/fancybox/fancybox.min.js') }}"></script>
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-<script src="js/index.js"></script>
+<script src="{{ asset('js/index.js') }}"></script>
 </body>
 
 </html>

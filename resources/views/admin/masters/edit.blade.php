@@ -14,8 +14,7 @@
         </div>
         <div class="form-group mb-3">
             <label for="image">Изображение</label>
-            <input type="file" class="form-control-file" id="image" name="image"
-                   onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
+            <input type="file" class="form-control-file" id="image" name="image">
         </div>
         <div class="form-group mb-3">
             <img id="preview" width="100" height="100" class="img-fluid" src="{{ asset('storage/' . $model->image) }}"
