@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 abstract class CRUDController extends Controller
 {
@@ -71,6 +72,10 @@ abstract class CRUDController extends Controller
         $model = $this->modelName::find($id);
         $requestData = $request->except('_token');
         if ($request->has('image')) {
+            Storage::delete([
+                'public/' . $model->image,
+                'uploads/' . $model->image,
+            ]);
             $imagePath = $requestData['image']->store('uploads', 'public');
             $requestData['image'] = $imagePath;
         }
@@ -82,6 +87,12 @@ abstract class CRUDController extends Controller
     public function destroy(string $id)
     {
         $model = $this->modelName::find($id)->first();
+        if ($model->image) {
+            Storage::delete([
+                'public/' . $model->image,
+                'uploads/' . $model->image,
+            ]);
+        }
         $model?->delete($id);
 
         return redirect()->route("admin.$this->modelLink.index");
