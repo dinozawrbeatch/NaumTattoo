@@ -41,4 +41,9 @@ class Tattoo extends Model
         'tall' => 'Прямоугольник(вертикальный)',
         'wide' => 'Прямоугольник(горизонтальный)',
     ];
+
+    public function getImageFormat(): string
+    {
+        return self::IMAGE_FORMATS[$this->format];
+    }
 }

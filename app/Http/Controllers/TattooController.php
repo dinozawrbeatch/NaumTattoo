@@ -15,4 +15,14 @@ class TattooController extends CRUDController
     {
         return view('admin.tattoos.create', ['tattoo' => $this->modelName]);
     }
+
+    public function index()
+    {
+        $tattoos = Tattoo::simplePaginate(10);
+
+        return view('admin.tattoos.index', [
+            'tattoos' => $tattoos,
+            'model' => $this->modelName
+        ]);
+    }
 }
