@@ -5,7 +5,10 @@
         @csrf
         <div class="form-group mb-3">
             <label for="client_name">Имя клиента</label>
-            <input type="text" class="form-control" id="client_name" name="client_name">
+            <input type="text" class="form-control" id="client_name" name="client_name" required>
+            @error('client_name')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group mb-3">
             <label for="grade">Оценка</label>
@@ -17,7 +20,10 @@
         </div>
         <div class="form-group mb-3">
             <label for="text">Текст отзыва</label>
-            <textarea class="form-control" id="text" name="text"></textarea>
+            <textarea class="form-control" id="text" name="text" maxlength="50" required></textarea>
+            @error('text')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>

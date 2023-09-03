@@ -6,10 +6,13 @@
         <div class="form-group mb-3">
             <label for="link">Ссылка</label>
             <input type="text" class="form-control" id="link" name="link">
+            @error('link')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group mb-3">
             <label for="image">Картинка</label>
-            <input type="file" class="form-control" id="image" name="image">
+            <input type="file" class="form-control" id="image" name="image" required>
         </div>
         <div class="form-group mb-3 d-none" id="js_preview">
             <img id="preview" width="100" height="100" class="img-fluid" src=""

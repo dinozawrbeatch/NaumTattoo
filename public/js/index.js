@@ -1,5 +1,4 @@
 const commonSettings = {
-    type: 'loop',
     drag: true,
     snap: true,
     speed: 1000,
@@ -74,6 +73,7 @@ const masterModalDescription = masterModal.querySelector('.master_description');
 document.querySelectorAll('.master').forEach(item => {
     item.addEventListener('click', e => {
         masterModal.classList.remove('hidden');
+        document.body.style.overflowY = 'hidden';
         masterModalName.innerHTML = item.querySelector('h2').innerHTML;
         masterModalDescription.innerHTML = item?.dataset?.description || 'Описание не найдено';
         masterModalPhoto.setAttribute('src', item.querySelector('img').getAttribute('src'));
@@ -83,8 +83,10 @@ document.querySelectorAll('.master').forEach(item => {
 masterModal.addEventListener('click', e => {
     if (!(e.target.classList.contains('layout') || e.target.id === 'master_modal')) return;
     masterModal.classList.add('hidden');
+    document.body.style.overflowY = 'unset';
 });
 
 closeMasterModalButton.addEventListener('click', () => {
     masterModal.classList.add('hidden');
+    document.body.style.overflowY = 'unset';
 });

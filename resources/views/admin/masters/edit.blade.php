@@ -7,10 +7,16 @@
         <div class="form-group mb-3">
             <label for="name">Имя</label>
             <input type="text" class="form-control" id="name" name="name" required value="{{ $model->name }}">
+            @error('name')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group mb-3">
             <label for="description">Описание</label>
             <textarea class="form-control" id="description" name="description" rows="3" required>{{ $model->description }}</textarea>
+            @error('description')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group mb-3">
             <label for="image">Изображение</label>

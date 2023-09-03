@@ -79,7 +79,8 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     @foreach($masters as $master)
-                        <li data-description="{{ $master->description }}" class="splide__slide master wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
+                        <li data-description="{{ $master->description }}" class="splide__slide master wow fadeInUp"
+                            data-wow-duration="2s" data-wow-delay="0.2s">
                             <img src="{{ asset('storage/' . $master->image) }}" alt="master"/>
                             <h2>{{ $master->name }}</h2>
                         </li>
@@ -127,7 +128,8 @@
           </span>
             </div>
             <div class="selects">
-                <div class="tabs wow fadeInRight data-wow-duration="2s"">
+                <div class="tabs wow fadeInRight data-wow-duration=" 2s
+                "">
                 <button class="active">Тату</button>
                 <button>Макияж</button>
             </div>
@@ -139,11 +141,11 @@
                 <div id="size" class="custom_select wow fadeInRight" data-wow-duration="2s"></div>
                 <div id="color" class="custom_select wow fadeInRight" data-wow-duration="2s"></div>
             </div>
-                <button id="show_tattoo_price" class="show_price wow fadeInRight" data-wow-duration="2s"
-                        data-wow-delay="0.6s">Узнать цену
-                </button>
-            </div>
+            <button id="show_tattoo_price" class="show_price wow fadeInRight" data-wow-duration="2s"
+                    data-wow-delay="0.6s">Узнать цену
+            </button>
         </div>
+    </div>
     </div>
 </section>
 
@@ -439,24 +441,22 @@
             </button>
             <img class="photo" src="images/master_aleksandr.webp" loading="lazy" alt="master"/>
             <div class="description">
-                <div>
-                    <h2 class="master_name">Александр</h2>
-                    <p class="master_description">It is a long established fact that a reader will be distracted by the
-                        readable
-                        content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                        more-or-less
-                        normal distribution of letters, as opposed to using 'Content here, content here', making it look
-                        like
-                        readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
-                        their
-                        default
-                        model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-                        Various
-                        versions have evolved over the years, sometimes by accident, sometimes on purpose (injected
-                        humour and the
-                        like).
-                    </p>
-                </div>
+                <h2 class="master_name">Александр</h2>
+                <p class="master_description">It is a long established fact that a reader will be distracted by the
+                    readable
+                    content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
+                    more-or-less
+                    normal distribution of letters, as opposed to using 'Content here, content here', making it look
+                    like
+                    readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
+                    their
+                    default
+                    model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                    Various
+                    versions have evolved over the years, sometimes by accident, sometimes on purpose (injected
+                    humour and the
+                    like).
+                </p>
                 <a alt="appointment" href="https://vk.com/tatuizhevsk1" class="appointmentBtn">
                     <span>Записаться</span>
                 </a>

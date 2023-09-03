@@ -37,6 +37,25 @@ abstract class CRUDController extends Controller
         ]);
     }
 
+    /**
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    private function validateModelFields($request, $fields): void
+    {
+        $rules = [];
+        $messages = [];
+        foreach ($this->modelName::FIELDS as $field => $value) {
+            if ($field === 'id' || $field === 'image') continue;
+            $rules[$field] = 'required';
+            $messages["$field.required"] = "Это поле необходимо для заполнения";
+        }
+
+        $this->validate($request, $rules, $messages);
+    }
+
+    /**
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request)
     {
         $requestData = $request->except('_token');
@@ -44,6 +63,8 @@ abstract class CRUDController extends Controller
             $imagePath = $requestData['image']->store('uploads', 'public');
             $requestData['image'] = $imagePath;
         }
+
+        $this->validateModelFields($request, $this->modelName::FIELDS);
         $this->modelName::create($requestData);
 
         return redirect()->route("admin.$this->modelLink.index");
@@ -67,6 +88,9 @@ abstract class CRUDController extends Controller
         return view("admin.$this->modelLink.edit", ['model' => $model]);
     }
 
+    /**
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function update(Request $request, string $id)
     {
         $model = $this->modelName::find($id);
@@ -79,6 +103,7 @@ abstract class CRUDController extends Controller
             $imagePath = $requestData['image']->store('uploads', 'public');
             $requestData['image'] = $imagePath;
         }
+        $this->validateModelFields($request, $this->modelName::FIELDS);
         $model?->update($requestData);
 
         return redirect()->route("admin.$this->modelLink.show", $id);

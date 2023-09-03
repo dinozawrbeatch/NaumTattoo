@@ -25,4 +25,11 @@ class TattooController extends CRUDController
             'model' => $this->modelName
         ]);
     }
+
+    public function show(int $id)
+    {
+        $tattoo = Tattoo::find($id);
+
+        return view('admin.tattoos.show', ['tattoo' => $tattoo]);
+    }
 }

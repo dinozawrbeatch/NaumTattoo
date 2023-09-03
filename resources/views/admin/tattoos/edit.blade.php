@@ -16,7 +16,7 @@
         </div>
         <div class="form-group mb-3">
             <label for="image">Изображение</label>
-            <input type="file" class="form-control-file" id="image" name="image"
+            <input type="file" class="form-control" id="image" name="image"
                    onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
         </div>
         <div class="form-group mb-3">

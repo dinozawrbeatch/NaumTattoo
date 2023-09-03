@@ -7,10 +7,13 @@
         <div class="form-group mb-3">
             <label for="link">Ссылка</label>
             <input type="text" class="form-control" id="link" value="{{ $model->link }}" name="link">
+            @error('link')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group mb-3">
             <label for="image">Изображение</label>
-            <input type="file" class="form-control-file" id="image" name="image"
+            <input type="file" class="form-control" id="image" name="image"
                    onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
         </div>
         <div class="form-group mb-3">
